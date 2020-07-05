@@ -17,7 +17,7 @@ func (s *DefaultSimpleMailService) Send(m SimpleMail) error {
 	return s.MailService.Send(*mail)
 }
 
-func NewHtmlSimpleMail(mailFrom Email, subject string, mailTo []Email, cc *[]Email, htmlContent string) *SimpleMail {
+func NewSimpleHtmlMail(mailFrom Email, subject string, mailTo []Email, cc *[]Email, htmlContent string) *SimpleMail {
 	html := NewContent("text/html", htmlContent)
 	s := SimpleMail{
 		From:    mailFrom,
