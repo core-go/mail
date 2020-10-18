@@ -9,22 +9,22 @@ import (
 
 // Mail contains mail struct
 type Mail struct {
-	From             Email              `json:"from,omitempty" mapstructure:"from"`
+	From             Email              `mapstructure:"from" json:"from,omitempty" gorm:"column:from" bson:"from,omitempty" dynamodbav:"from,omitempty" firestore:"from,omitempty"`
 	To               []Email            `json:"-,omitempty"`
 	Cc               *[]Email           `json:"-,omitempty"`
 	Bcc              *[]Email           `json:"-,omitempty"`
-	Subject          string             `json:"subject,omitempty"`
-	Personalizations []*Personalization `json:"personalizations,omitempty" mapstructure:"personalizations"`
-	Content          []Content          `json:"content,omitempty" mapstructure:"content"`
-	Attachments      []*Attachment      `json:"attachments,omitempty"`
+	Subject          string             `mapstructure:"subject" json:"subject,omitempty" json:"subject,omitempty" gorm:"column:subject" bson:"subject,omitempty" dynamodbav:"subject,omitempty" firestore:"subject,omitempty"`
+	Personalizations []*Personalization `mapstructure:"personalizations" json:"personalizations,omitempty" gorm:"column:personalizations" bson:"personalizations,omitempty" dynamodbav:"personalizations,omitempty" firestore:"personalizations,omitempty"`
+	Content          []Content          `mapstructure:"content" json:"content,omitempty" gorm:"column:content" bson:"content,omitempty" dynamodbav:"content,omitempty" firestore:"content,omitempty"`
+	Attachments      []*Attachment      `mapstructure:"attachments" json:"attachments,omitempty" gorm:"column:attachments" bson:"attachments,omitempty" dynamodbav:"attachments,omitempty" firestore:"attachments,omitempty"`
 	TemplateID       string             `json:"template_id,omitempty"`
-	Sections         map[string]string  `json:"sections,omitempty"`
-	Headers          map[string]string  `json:"headers,omitempty"`
-	Categories       []string           `json:"categories,omitempty"`
+	Sections         map[string]string  `mapstructure:"sections" json:"sections,omitempty"`
+	Headers          map[string]string  `mapstructure:"headers" json:"headers,omitempty"`
+	Categories       []string           `mapstructure:"categories" json:"categories,omitempty"`
 	CustomArgs       map[string]string  `json:"custom_args,omitempty"`
 	SendAt           int                `json:"send_at,omitempty"`
 	BatchID          string             `json:"batch_id,omitempty"`
-	Asm              *Asm               `json:"asm,omitempty"`
+	Asm              *Asm               `mapstructure:"asm" json:"asm,omitempty"`
 	IPPoolID         string             `json:"ip_pool_name,omitempty"`
 	MailSettings     *MailSettings      `json:"mail_settings,omitempty"`
 	TrackingSettings *TrackingSettings  `json:"tracking_settings,omitempty"`
@@ -33,10 +33,10 @@ type Mail struct {
 
 // Personalization holds mail body struct
 type Personalization struct {
-	To                  []*Email               `json:"to,omitempty" mapstructure:"to"`
-	CC                  []*Email               `json:"cc,omitempty" mapstructure:"cc"`
-	BCC                 []*Email               `json:"bcc,omitempty" mapstructure:"bcc"`
-	Subject             string                 `json:"subject,omitempty" mapstructure:"subject"`
+	To                  []*Email               `mapstructure:"to" json:"to,omitempty" `
+	CC                  []*Email               `mapstructure:"cc" json:"cc,omitempty"`
+	BCC                 []*Email               `mapstructure:"bcc" json:"bcc,omitempty" `
+	Subject             string                 `mapstructure:"subject" json:"subject,omitempty" gorm:"column:subject" bson:"subject,omitempty" dynamodbav:"subject,omitempty" firestore:"subject,omitempty"`
 	Headers             map[string]string      `json:"headers,omitempty"`
 	Substitutions       map[string]string      `json:"substitutions,omitempty"`
 	CustomArgs          map[string]string      `json:"custom_args,omitempty"`
