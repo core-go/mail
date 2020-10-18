@@ -44,7 +44,7 @@ import (
 func main() {
 	// Create a new smtp mail service 
 	config := smtp.DialerConfig{"smtp.gmail.com", 587, "test@gmail.com", "test", true}
-	mailService := smtp.NewSmtpMailService(config)
+	mailService := smtp.NewSmtpMailSender(config)
 
 	subject := "Your smtp demo"
 	content := `Content of the email`
@@ -68,7 +68,7 @@ import (
 
 func main() {
 	// Create a new sendgrid mail service 
-	mailService := sendgrid.NewSendGridMailService("xx.xxxxOQVcRKGxxxxk2KJc4g.fM7m9NIxxxxSLNOzxxxxfxF9bH4mnRrIysJA8q-xxxx")
+	mailService := sendgrid.NewSendGridMailSender("xx.xxxxOQVcRKGxxxxk2KJc4g.fM7m9NIxxxxSLNOzxxxxfxF9bH4mnRrIysJA8q-xxxx")
 
 	subject := "Your sendgrid demo"
 	content := `Content of the email`

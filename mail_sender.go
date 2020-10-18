@@ -1,5 +1,5 @@
 package mail
 
-type MailService interface {
+type MailSender interface {
 	Send(mail Mail) error
 }

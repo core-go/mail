@@ -1,20 +1,20 @@
 package mail
 
-type DefaultSimpleMailService struct {
-	MailService MailService
+type DefaultSimpleMailSender struct {
+	MailSender MailSender
 }
 
-func NewSimpleMailService(mailService MailService) *DefaultSimpleMailService {
-	return &DefaultSimpleMailService{MailService: mailService}
+func NewSimpleMailSender(mailService MailSender) *DefaultSimpleMailSender {
+	return &DefaultSimpleMailSender{MailSender: mailService}
 }
 
-func (s *DefaultSimpleMailService) Send(m SimpleMail) error {
+func (s *DefaultSimpleMailSender) Send(m SimpleMail) error {
 	var contents = make([]Content, len(m.Content))
 	for i, content := range m.Content {
 		contents[i] = content
 	}
 	mail := NewMailInit(m.From, m.Subject, m.To, m.Cc, contents...)
-	return s.MailService.Send(*mail)
+	return s.MailSender.Send(*mail)
 }
 
 func NewSimpleHtmlMail(mailFrom Email, subject string, mailTo []Email, cc *[]Email, htmlContent string) *SimpleMail {
