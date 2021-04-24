@@ -7,8 +7,8 @@
 
 ## Implementations
 There are 2 implementations of MailService (You can see the samples below):
-- SMTP at [common-go/smtp](https://github.com/common-go/smtp)
-- SendGrid at [common-go/sendgrid](https://github.com/common-go/sendgrid)
+- SMTP
+- SendGrid
 
 ## Installation
 
@@ -32,13 +32,13 @@ type MailService interface {
 }
 ```
 
-## Example of [SMTP](https://github.com/common-go/smtp)
+## Example of SMTP
 ```go
 package main
 
 import (
 	"github.com/common-go/mail"
-	"github.com/common-go/smtp"
+	"github.com/common-go/mail/smtp"
 )
 
 func main() {
@@ -57,13 +57,13 @@ func main() {
 }
 ```
 
-## Example of [SendGrid](https://github.com/common-go/smtp)
+## Example of SendGrid
 ```go
 package main
 
 import (
 	"github.com/common-go/mail"
-	"github.com/common-go/sendgrid"
+	"github.com/common-go/mail/sendgrid"
 )
 
 func main() {

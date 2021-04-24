@@ -5,31 +5,27 @@ import (
 	"encoding/json"
 )
 
-type Producer interface {
-	Produce(ctx context.Context, data []byte, attributes *map[string]string) (string, error)
-}
-
 type MQMailSender struct {
-	Producer   Producer
+	Publish    func(ctx context.Context, data []byte, attributes map[string]string) (string, error)
 	Goroutines bool
 }
 
-func NewMQMailSender(producer Producer, goroutines bool) *MQMailSender {
-	return &MQMailSender{Producer: producer, Goroutines: goroutines}
+func NewMQMailSender(publish func(ctx context.Context, data []byte, attributes map[string]string) (string, error), goroutines bool) *MQMailSender {
+	return &MQMailSender{Publish: publish, Goroutines: goroutines}
 }
 func (s *MQMailSender) Send(m SimpleMail) error {
 	if s.Goroutines {
-		go Produce(s.Producer, m)
+		go Publish(m, s.Publish)
 		return nil
 	} else {
-		return Produce(s.Producer, m)
+		return Publish(m, s.Publish)
 	}
 }
 
-func Produce(producer Producer, m SimpleMail) error {
+func Publish(m SimpleMail, publish func(context.Context, []byte, map[string]string) (string, error)) error {
 	b, er1 := json.Marshal(m)
 	if er1 == nil {
-		_, er2 := producer.Produce(context.TODO(), b, nil)
+		_, er2 := publish(context.TODO(), b, nil)
 		return er2
 	} else {
 		return er1
