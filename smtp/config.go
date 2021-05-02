@@ -1,6 +1,6 @@
 package smtp
 
-import "github.com/common-go/mail"
+import "github.com/core-go/mail"
 
 type MailConfig struct {
 	Provider string       `mapstructure:"provider" json:"provider,omitempty" gorm:"column:provider" bson:"provider,omitempty" dynamodbav:"provider,omitempty" firestore:"provider,omitempty"`

@@ -2,7 +2,7 @@ package smtp
 
 import (
 	"errors"
-	"github.com/common-go/mail"
+	"github.com/core-go/mail"
 	"gopkg.in/gomail.v2"
 )
 
@@ -19,7 +19,7 @@ func NewSmtpMailSender(config DialerConfig) *SmtpMailSender {
 func (m *SmtpMailSender) Send(mail mail.Mail) error {
 	message := gomail.NewMessage()
 	if mail.From.Address == "" {
-		errors.New("must have from field")
+		return errors.New("must have from field")
 	} else if len(mail.From.Name) == 0 {
 		message.SetHeader("From", mail.From.Address)
 	} else {
@@ -46,28 +46,28 @@ func (m *SmtpMailSender) Send(mail mail.Mail) error {
 
 	if mail.Cc != nil {
 		cc := make(map[string][]string)
-		ccAdress := make([]string, 0)
+		ccAddress := make([]string, 0)
 		for _, i2 := range *mail.Cc {
-			ccAdress = append(ccAdress, message.FormatAddress(i2.Address, i2.Name))
+			ccAddress = append(ccAddress, message.FormatAddress(i2.Address, i2.Name))
 		}
-		cc["Cc"] = ccAdress
+		cc["Cc"] = ccAddress
 		message.SetHeaders(cc)
 	}
 
 	if mail.Bcc != nil {
 		bcc := make(map[string][]string)
-		bccAdress := make([]string, 0)
+		bccAddress := make([]string, 0)
 		for _, i3 := range *mail.Bcc {
-			bccAdress = append(bccAdress, message.FormatAddress(i3.Address, i3.Name))
+			bccAddress = append(bccAddress, message.FormatAddress(i3.Address, i3.Name))
 		}
-		bcc["Bcc"] = bccAdress
+		bcc["Bcc"] = bccAddress
 		message.SetHeaders(bcc)
 	}
 
 	message.SetHeader("Subject", mail.Subject)
 	if len(mail.Content) > 0 {
-		var len = len(mail.Content) - 1
-		for i := 0; i <= len; i++ {
+		var l = len(mail.Content) - 1
+		for i := 0; i <= l; i++ {
 			message.SetBody(mail.Content[i].Type, mail.Content[i].Value)
 		}
 	}

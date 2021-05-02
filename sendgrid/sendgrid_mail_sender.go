@@ -2,7 +2,7 @@ package sendgrid
 
 import (
 	"errors"
-	x "github.com/common-go/mail"
+	m "github.com/core-go/mail"
 	"github.com/sendgrid/sendgrid-go"
 	"github.com/sendgrid/sendgrid-go/helpers/mail"
 )
@@ -17,7 +17,7 @@ func NewSendGridMailSender(apiKey string) *SendGridMailSender {
 	return m
 }
 
-func (s *SendGridMailSender) Send(m x.Mail) error {
+func (s *SendGridMailSender) Send(m m.Mail) error {
 	mailSend := mail.NewV3Mail()
 	from := mail.NewEmail(m.From.Name, m.From.Address)
 	var tos []*mail.Email

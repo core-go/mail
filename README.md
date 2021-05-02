@@ -6,22 +6,20 @@
 - MailService
 
 ## Implementations
-There are 2 implementations of MailService (You can see the samples below):
+There are 2 implementations of MailService:
 - SMTP
 - SendGrid
 
 ## Installation
-
-Please make sure to initialize a Go module before installing common-go/mail:
+Please make sure to initialize a Go module before installing core-go/mail:
 
 ```shell
-go get -u github.com/common-go/mail
+go get -u github.com/core-go/mail
 ```
 
 Import:
-
 ```go
-import "github.com/common-go/mail"
+import "github.com/core-go/mail"
 ```
 
 ## Details
@@ -37,8 +35,8 @@ type MailService interface {
 package main
 
 import (
-	"github.com/common-go/mail"
-	"github.com/common-go/mail/smtp"
+	"github.com/core-go/mail"
+	"github.com/core-go/mail/smtp"
 )
 
 func main() {
@@ -62,8 +60,8 @@ func main() {
 package main
 
 import (
-	"github.com/common-go/mail"
-	"github.com/common-go/mail/sendgrid"
+	"github.com/core-go/mail"
+	"github.com/core-go/mail/sendgrid"
 )
 
 func main() {
