@@ -1,4 +1,7 @@
 # Mail
+![Email](https://camo.githubusercontent.com/1a239ae784d3f8c33517b2b4b0860f6e438432c6589191072ae773204918fc39/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f3830302f312a374a46344f47397a427973754a71724f4958324a76672e706e67)
+- The sample is [go-authentication](https://github.com/project-samples/go-authentication)
+
 ## Model
 - Mail
 
